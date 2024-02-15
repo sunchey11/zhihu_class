@@ -1,0 +1,8 @@
+
+anders_test/chatgpt/__pycache__/
+anders_test/l02Prompt_Engineering/__pycache__/
+anders_test/utils/__pycache__/
+*.pyc
+
+zhihu-agiclass/.DS_Store
+zhihu-agiclass/.streamlit/
