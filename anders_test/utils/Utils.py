@@ -81,6 +81,24 @@ def load_thread(client, name):
     thread = client.beta.threads.retrieve(thread_id=thread_id)
     return thread
 
+def get_current_time():
+    # return time.strftime("%H:%M:%S", time.localtime())
+    return f'现在时间是{time.strftime("%H:%M:%S", time.localtime())}'
+def how_far(now_time):
+    return 2
+def sum_nums(numbers):
+    v = 0
+    for n in numbers:
+        v = v+n
+    return v
+
+available_functions = {
+    'get_current_time': get_current_time,
+    'how_far': how_far,
+    'sum_nums':sum_nums
+}
+
+    
 
 def chat(client,name, greeting_msg):
     assistant_id = read_value(name+'_assi.txt')
@@ -106,8 +124,31 @@ def chat(client,name, greeting_msg):
 
             # 如果需要action，则依次执行本地方法并返回结果
             elif run.status == 'requires_action':
-                print('need action')
+                print(run)
+                print('run需要action')
+                
+                tool_outputs = []
+                for tool_call in run.required_action.submit_tool_outputs.tool_calls:
+                    # 动态调用函数
+                    func = available_functions[tool_call.function.name]
+                    # 调用函数
+                    args = json.loads(tool_call.function.arguments)
+                    print(f'调用本地方法：{func.__name__}，参数：{args}')
+                    output = func(**args)
+                    # 将结果添加到tool_outputs中
+                    tool_outputs.append({
+                        'tool_call_id': tool_call.id,
+                        'output': output,
+                    })
 
+                # 提交tool_outputs
+                run = client.beta.threads.runs.submit_tool_outputs(
+                    thread_id=thread_id,
+                    run_id=run.id,
+                    tool_outputs=tool_outputs,
+                )
+
+                print("本地执行完成，我将继续，请稍等")
             # 如果完成
             elif run.status == 'completed':
                 print(' ok')

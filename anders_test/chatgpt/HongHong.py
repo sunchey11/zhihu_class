@@ -1,8 +1,8 @@
 from utils.Utils import abs_path,upload_file, create_assistant, create_thread, chat, read_value, write_value, initClient
 
 b_upload_file = False
-b_create_assistant = False
-b_create_thread = False
+b_create_assistant = True
+b_create_thread = True
 
 assi_name = 'honghong'
 
