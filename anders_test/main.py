@@ -1,4 +1,4 @@
-# import chatgpt.HelloEbig
+import chatgpt.HelloEbig
 # import chatgpt.HongHong
 # import chatgpt.plan
 
@@ -8,4 +8,4 @@
 
 # import chatgpt.quick_start.openai_test
 
-import chatgpt.sum_numbers
+# import chatgpt.sum_numbers

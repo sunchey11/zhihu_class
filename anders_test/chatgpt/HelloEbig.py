@@ -1,8 +1,8 @@
-from utils.Utils import abs_path,upload_file, create_assistant, create_thread, chat, read_value, write_value, initClient
+from utils.Utils import abs_path, load_assistant, load_thread,upload_file, create_assistant, create_thread, chat, read_value, write_value, initClient
 
 b_upload_file = False
 b_create_assistant = False
-b_create_thread = False
+b_create_thread = True
 
 assi_name = 'answer_about_ebig'
 if b_upload_file:
@@ -18,9 +18,11 @@ if b_create_assistant:
                      "gpt-4-1106-preview",
                      [{"type": "code_interpreter"}],
                      fileid)
-
+else:
+    load_assistant(client, assi_name)
 if b_create_thread:
     create_thread(client, assi_name)
-
+else:
+    load_thread(client, assi_name)
 chat(client, assi_name, "请介绍下广州以大计算机科技有限公司")
 print('finished')
