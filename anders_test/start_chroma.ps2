@@ -1,0 +1,2 @@
+# 进入anaconda命令行，然后运行即可启动chroma
+chroma run --path ./chroma_db_path

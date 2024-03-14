@@ -6,7 +6,8 @@ from zhipuai import ZhipuAI
 print('start')
 client = ZhipuAI(api_key="27ac77433ad33b671a0f298cd29afc2e.YT0mNTzsb4j4y0Xy") 
 response = client.chat.completions.create(
-    model="glm-4",  # 填写需要调用的模型名称
+    # model="glm-4",  # 填写需要调用的模型名称
+    model="glm-3-turbo",  # 根据输入的自然语言指令完成多种语言类任务，推荐使用 SSE 或异步调用方式请求接口
     messages=[
         {"role": "system", "content": "你是一个人工智能助手，你叫小红"},
         {"role": "user", "content": "你好！你叫什么名字"},

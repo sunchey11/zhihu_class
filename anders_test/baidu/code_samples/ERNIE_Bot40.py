@@ -35,6 +35,7 @@ def main():
     response = requests.request("POST", url, headers=headers, data=payload)
     
     print(response.text)
+    print(response.json()['result'])
     
 
 def get_access_token():

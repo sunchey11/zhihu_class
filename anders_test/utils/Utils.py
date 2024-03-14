@@ -12,12 +12,15 @@ def abs_path(name):
 ids_path = './ids/'
 # 初始化 OpenAI 服务
 def initClient():
-    api_key = 'sk-YHK6UyHwbOzUnn9DgUyZJCF1u52qROP3mXCFVp5PG3olGpZX'
-    base_url = "https://api.fe8.cn/v1"
+    api_key = 'sk-YHK6UyHwbOzUnn9DgUyZJCF1u52qROP3mXCFVp5PG3olGpZX' #devcto的key
+    # api_key = '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' #openai的key
+    base_url = "https://api.fe8.cn/v1" #使用devcto时的地址
+    # base_url="https://a.xairun.com/v1" # 国内的代理地址,再次提醒：如果你使用 DevCTO的key，不要用这个地址。
 
     client = OpenAI(api_key=api_key, base_url=base_url)
+    # client = OpenAI(api_key=api_key) # 直接连openai
     print(client.api_key)
-    print(client.base_url)
+    print(client.base_url) # https://api.openai.com/v1/
     return client
 
 
